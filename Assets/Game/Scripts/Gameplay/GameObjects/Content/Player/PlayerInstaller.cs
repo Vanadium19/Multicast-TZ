@@ -1,4 +1,3 @@
-using System;
 using Gameplay.Core.Components;
 using Gameplay.GameSystems.Controllers;
 using UnityEngine;
@@ -21,10 +20,6 @@ namespace Gameplay.Content.Player
                 .To<MoveComponent>()
                 .AsSingle()
                 .WithArguments(_speed);
-
-            Container.BindInterfacesTo<MoveController>()
-                .AsSingle()
-                .NonLazy();
         }
     }
 }
