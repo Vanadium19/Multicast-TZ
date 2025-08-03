@@ -1,6 +1,6 @@
 using R3;
 
-namespace System.Collections.Generic
+namespace InstrumentsModule
 {
     public interface IUpgradeable
     {

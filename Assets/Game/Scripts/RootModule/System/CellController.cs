@@ -1,5 +1,6 @@
 using EntityModule;
 using InvetoryModule;
+using PlayerModule;
 using UnityEngine;
 using WalletModule;
 using Zenject;
@@ -9,11 +10,13 @@ namespace RootModule
     public class CellController : MonoBehaviour
     {
         private IWallet _wallet;
+        private IBag _bag;
 
         [Inject]
-        public void Construct(IWallet wallet)
+        public void Construct(IWallet wallet, IBag bag)
         {
             _wallet = wallet;
+            _bag = bag;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -21,16 +24,16 @@ namespace RootModule
             if (!other.TryGetComponent(out IEntity entity))
                 return;
 
-            if (entity.TryGet(out IBag bag))
-                Cell(bag);
+            if (entity.TryGet(out Player player))
+                Cell();
         }
 
-        private void Cell(IBag bag)
+        private void Cell()
         {
-            var cost = bag.GoodsCost;
+            var cost = _bag.GoodsCost;
 
             _wallet.AddMoney(cost);
-            bag.Clear();
+            _bag.Clear();
         }
     }
 }

@@ -15,6 +15,10 @@ namespace PlayerModule
                 .FromInstance(_rigidbody)
                 .AsSingle();
 
+            Container.Bind<Player>()
+                .AsSingle()
+                .NonLazy();
+
             Container.Bind<IMoveComponent>()
                 .To<MoveComponent>()
                 .AsSingle()

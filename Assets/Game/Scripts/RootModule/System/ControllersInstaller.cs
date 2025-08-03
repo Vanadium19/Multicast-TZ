@@ -19,7 +19,7 @@ namespace RootModule
                 .FromInstance(_cellController)
                 .AsSingle();
 
-            Container.Bind<SickleUpgradeController>()
+            Container.BindInterfacesTo<SickleUpgradeController>()
                 .FromInstance(_sickleUpgradeController)
                 .AsSingle();
         }
