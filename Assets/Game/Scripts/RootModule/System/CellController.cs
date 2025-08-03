@@ -1,3 +1,4 @@
+using BotModule;
 using EntityModule;
 using InvetoryModule;
 using PlayerModule;
@@ -9,12 +10,14 @@ namespace RootModule
 {
     public class CellController : MonoBehaviour
     {
+        private IBotsSpawner _botSpawner;
         private IWallet _wallet;
         private IBag _bag;
 
         [Inject]
-        public void Construct(IWallet wallet, IBag bag)
+        public void Construct(IBotsSpawner botSpawner, IWallet wallet, IBag bag)
         {
+            _botSpawner = botSpawner;
             _wallet = wallet;
             _bag = bag;
         }
@@ -31,8 +34,11 @@ namespace RootModule
         private void Cell()
         {
             var cost = _bag.GoodsCost;
+            var count = _bag.GoodsCount;
 
             _wallet.AddMoney(cost);
+
+            _botSpawner.AddCount(count);
             _bag.Clear();
         }
     }

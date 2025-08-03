@@ -1,16 +1,12 @@
 {
-    "name": "RootModule",
+    "name": "BotModule",
     "rootNamespace": "",
     "references": [
+        "GUID:03729e6f50a1b48838b86974171707ac",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:a4e8c9cc04f840a0806edbc53a09561e",
-        "GUID:6af1e655fd29440c9db9852b469f8abb",
-        "GUID:bf782c0d478f46c392cb1d7988701310",
-        "GUID:ea9f4232a8474533a274e18e5b820ea3",
-        "GUID:b42d9b230cc64d11ac73ede027d73183",
-        "GUID:d8c698ed8ba548cebe33e6d6575ea771",
         "GUID:78034ca81a90e4129bc4ad600e45b3f9",
-        "GUID:43246be349ee4980b8106ebce419af48"
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:029c1c1b674aaae47a6841a0b89ad80e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

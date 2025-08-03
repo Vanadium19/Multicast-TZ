@@ -9,6 +9,7 @@ namespace InvetoryModule
         private readonly List<IGood> _goods = new();
 
         public int GoodsCost => _goods.Select(good => good.Cost).Sum();
+        public int GoodsCount => _goods.Count;
 
         public void Add(IEnumerable<IGood> goods)
         {
