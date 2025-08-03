@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Game.Modules.FSM
+namespace FSMModule
 {
     public interface IStateMachine<TKey> : IState
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game.Modules.FSM
+namespace FSMModule
 {
     public class StateMachine<TKey> : IStateMachine<TKey>
     {

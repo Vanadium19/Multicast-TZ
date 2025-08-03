@@ -1,4 +1,4 @@
-﻿namespace Game.Modules.FSM
+﻿namespace FSMModule
 {
     public abstract class AbstractStateTransition<TKey> : IStateTransition<TKey>
     {

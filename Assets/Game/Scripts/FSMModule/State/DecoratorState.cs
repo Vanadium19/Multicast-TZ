@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.Modules.FSM
+namespace FSMModule
 {
     public class DecoratorState : IState
     {

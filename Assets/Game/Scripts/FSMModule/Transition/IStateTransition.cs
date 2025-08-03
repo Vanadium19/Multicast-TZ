@@ -1,4 +1,4 @@
-﻿namespace Game.Modules.FSM
+﻿namespace FSMModule
 {
     public interface IStateTransition<TKey>
     {
