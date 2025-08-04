@@ -7,8 +7,11 @@ namespace InstrumentsModule
 {
     public class UpgradeView : MonoBehaviour
     {
+        private const string MaxProgressText = "MAX";
+
         [SerializeField] private TMP_Text _price;
         [SerializeField] private Button _buyButton;
+        [SerializeField] private Image _progressBar;
 
         public Observable<Unit> BuyButtonClicked { get; private set; }
 
@@ -30,6 +33,16 @@ namespace InstrumentsModule
         public void UpgradePrice(string price)
         {
             _price.text = price;
+        }
+
+        public void UpgradeProgress(float progress)
+        {
+            progress = Mathf.Clamp01(progress);
+
+            if (Mathf.Approximately(progress, 1f))
+                UpgradePrice(MaxProgressText);
+
+            _progressBar.fillAmount = progress;
         }
     }
 }

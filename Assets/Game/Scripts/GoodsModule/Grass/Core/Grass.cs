@@ -1,24 +1,28 @@
+using R3;
 using UnityEngine;
 
 namespace GoodsModule
 {
     public class Grass : IGrass
     {
-        //Temporary solution
-        private readonly GameObject _gameObject;
+        private readonly Collider _collider;
+        private readonly GoodConfig _goodConfig;
 
-        public Grass(GameObject gameObject)
+        private readonly ReactiveProperty<bool> _isCollected = new();
+
+        public Grass(Collider collider, GoodConfig goodConfig)
         {
-            _gameObject = gameObject;
+            _collider = collider;
+            _goodConfig = goodConfig;
         }
 
-        //Temporary solution
-        public int Cost => 5;
+        public int Price => _goodConfig.Price;
+        public ReadOnlyReactiveProperty<bool> IsCollected => _isCollected;
 
         public void Collect()
         {
-            //Temporary solution
-            Object.Destroy(_gameObject);
+            _collider.enabled = false;
+            _isCollected.Value = true;
         }
     }
 }

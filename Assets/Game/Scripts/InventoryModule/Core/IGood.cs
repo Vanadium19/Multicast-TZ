@@ -1,7 +1,7 @@
-namespace InvetoryModule
+namespace InventoryModule
 {
     public interface IGood
     {
-        public int Cost { get; }
+        public int Price { get; }
     }
 }

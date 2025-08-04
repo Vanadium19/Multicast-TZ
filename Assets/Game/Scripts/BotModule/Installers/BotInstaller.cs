@@ -16,7 +16,7 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.Bind<IBot>()
-                .To<Bot>()
+                .To<BotFacade>()
                 .AsSingle();
 
             Container.Bind<ITargetMoveComponent>()

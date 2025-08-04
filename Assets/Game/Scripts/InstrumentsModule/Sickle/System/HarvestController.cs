@@ -1,6 +1,6 @@
 using System.Linq;
 using InstrumentsModule;
-using InvetoryModule;
+using InventoryModule;
 using UnityEngine;
 using Zenject;
 
@@ -21,9 +21,6 @@ namespace InstrumentsModule
             _sickle = sickle;
             _bag = bag;
             _delay = delay;
-
-            //Temporary solution to enable harvesting
-            Enable(true);
         }
 
         public void Tick()
@@ -44,14 +41,14 @@ namespace InstrumentsModule
             if (Time.time - _lastCollectTime < _delay)
                 return;
 
-            var grass = _sickle.CollectGrass();
+            _lastCollectTime = Time.time;
+
+            var grass = _sickle.Chop();
 
             if (!grass.Any())
                 return;
 
             _bag.Add(grass);
-
-            _lastCollectTime = Time.time;
         }
     }
 }

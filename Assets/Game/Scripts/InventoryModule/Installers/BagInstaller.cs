@@ -1,15 +1,29 @@
 using UnityEngine;
 using Zenject;
 
-namespace InvetoryModule
+namespace InventoryModule
 {
-    [CreateAssetMenu(fileName = "BagInstaller", menuName = "Game/Installers/BagInstaller")]
-    public class BagInstaller : ScriptableObjectInstaller
+    public class BagInstaller : Installer<BagView, BagInstaller>
     {
+        private readonly BagView _bagView;
+
+        public BagInstaller(BagView bagView)
+        {
+            _bagView = bagView;
+        }
+
         public override void InstallBindings()
         {
             Container.Bind<IBag>()
                 .To<Bag>()
+                .AsSingle();
+
+            Container.BindInterfacesAndSelfTo<BagPresenter>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<BagView>()
+                .FromInstance(_bagView)
                 .AsSingle();
         }
     }

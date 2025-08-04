@@ -2,13 +2,15 @@ using Zenject;
 
 namespace InstrumentsModule
 {
-    public class SickleInstaller : Installer<SickleArgs, SickleInstaller>
+    public class SickleInstaller : Installer<SickleArgs, SickleView, SickleInstaller>
     {
         private readonly SickleArgs _sickleArgs;
+        private readonly SickleView _sickleView;
 
-        public SickleInstaller(SickleArgs sickleArgs)
+        public SickleInstaller(SickleArgs sickleArgs, SickleView sickleView)
         {
             _sickleArgs = sickleArgs;
+            _sickleView = sickleView;
         }
 
         public override void InstallBindings()
@@ -22,6 +24,14 @@ namespace InstrumentsModule
                 .AsSingle()
                 .WithArguments(_sickleArgs.Delay)
                 .NonLazy();
+
+            Container.BindInterfacesTo<SicklePresenter>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<SickleView>()
+                .FromInstance(_sickleView)
+                .AsSingle();
         }
     }
 }

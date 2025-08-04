@@ -24,6 +24,7 @@ namespace InstrumentsModule
             var builder = Disposable.CreateBuilder();
 
             _upgradeSystem.IsActive.Subscribe(OnUpgradeSystemActivated).AddTo(ref builder);
+            _upgradeSystem.Progress.Subscribe(_view.UpgradeProgress).AddTo(ref builder);
             _upgradeSystem.Price.Subscribe(OnPriceChanged).AddTo(ref builder);
 
             _view.BuyButtonClicked.Subscribe(_ => OnBuyButtonClicked()).AddTo(ref builder);

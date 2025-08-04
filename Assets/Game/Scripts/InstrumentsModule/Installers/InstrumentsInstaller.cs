@@ -3,41 +3,32 @@ using Zenject;
 
 namespace InstrumentsModule
 {
-    public class InstrumentsInstaller : MonoInstaller
+    public class InstrumentsInstaller : Installer<SickleArgs, SickleView, UpgradeView, InstrumentsInstaller>
     {
-        [SerializeField] private SickleArgs _sickleArgs;
-        [SerializeField] private UpgradeView _view;
+        private readonly SickleArgs _sickleArgs;
+        private readonly SickleView _sickleView;
+        private readonly UpgradeView _upgradeView;
+
+        public InstrumentsInstaller(SickleArgs sickleArgs,
+            SickleView sickleView,
+            UpgradeView upgradeView)
+        {
+            _sickleArgs = sickleArgs;
+            _upgradeView = upgradeView;
+            _sickleView = sickleView;
+        }
 
         public override void InstallBindings()
         {
-            SickleInstaller.Install(Container, _sickleArgs);
+            SickleInstaller.Install(Container, _sickleArgs, _sickleView);
 
             Container.BindInterfacesTo<UpgradeSystemPresenter>()
                 .AsSingle()
                 .NonLazy();
 
             Container.Bind<UpgradeView>()
-                .FromInstance(_view)
+                .FromInstance(_upgradeView)
                 .AsSingle();
-        }
-
-        private void OnDrawGizmos()
-        {
-            DrawSickleGizmos();
-        }
-
-        private void DrawSickleGizmos()
-        {
-            if (_sickleArgs == null)
-                return;
-
-            if (!_sickleArgs.Transform)
-                return;
-
-            var radius = _sickleArgs.RadiusForGizmos == 0 ? _sickleArgs.StartRadius : _sickleArgs.RadiusForGizmos;
-
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(_sickleArgs.Point, radius);
         }
     }
 }

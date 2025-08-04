@@ -1,5 +1,4 @@
 using System;
-using ComponentsModule;
 using R3;
 using Zenject;
 
@@ -7,22 +6,23 @@ namespace BotModule
 {
     public class BotPresenter : IInitializable, IDisposable
     {
-        private readonly ITargetMoveComponent _moveComponent;
+        private readonly IBot _bot;
         private readonly BotView _view;
 
         private IDisposable _disposable;
 
-        public BotPresenter(ITargetMoveComponent moveComponent, BotView view)
+        public BotPresenter(IBot bot, BotView view)
         {
-            _moveComponent = moveComponent;
             _view = view;
+            _bot = bot;
         }
 
         public void Initialize()
         {
             var disposableBuilder = Disposable.CreateBuilder();
 
-            _moveComponent.IsMoving.Subscribe(_view.SetMoving).AddTo(ref disposableBuilder);
+            _bot.IsMoving.Subscribe(_view.SetMoving).AddTo(ref disposableBuilder);
+            _bot.ProductBought.Subscribe(_ => _view.SetBuyingAnimation()).AddTo(ref disposableBuilder);
 
             _disposable = disposableBuilder.Build();
         }

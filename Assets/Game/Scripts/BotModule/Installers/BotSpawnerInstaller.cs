@@ -1,6 +1,7 @@
 using BotModule;
 using EntityModule;
 using UnityEngine;
+using UnityEngine.Animations;
 using Zenject;
 
 namespace Installers
@@ -8,10 +9,12 @@ namespace Installers
     public class BotSpawnerInstaller : MonoInstaller
     {
         private const string BotName = "Bot";
+        private const float ConstraintWeight = 1f;
 
         [SerializeField] private Path _botPath;
         [SerializeField] private Entity _botPrefab;
         [SerializeField] private BotsSpawnerArgs _botsSpawnerArgs;
+        [SerializeField] private Transform _canvasConstraintTransform;
 
         public override void InstallBindings()
         {
@@ -31,6 +34,15 @@ namespace Installers
             Container.Bind<Path>()
                 .FromInstance(_botPath)
                 .AsSingle();
+
+            Container.Bind<ConstraintSource>()
+                .FromMethod(CreateConstraintSource)
+                .AsSingle();
+        }
+
+        private ConstraintSource CreateConstraintSource()
+        {
+            return new ConstraintSource { sourceTransform = _canvasConstraintTransform, weight = ConstraintWeight, };
         }
     }
 }

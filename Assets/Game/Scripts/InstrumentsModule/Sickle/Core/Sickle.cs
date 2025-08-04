@@ -14,6 +14,9 @@ namespace InstrumentsModule
         private readonly SickleArgs _args;
         private readonly int _layerMask;
 
+        private readonly float _minProgress;
+
+        private readonly ReactiveCommand _chopped = new();
         private readonly ReactiveProperty<float> _progress = new();
 
         private float _radius;
@@ -23,15 +26,22 @@ namespace InstrumentsModule
             _args = args;
             _layerMask = args.LayerMask;
             _radius = _args.StartRadius;
+
+            _args.Transform.localScale = Vector3.one * _radius;
+            _minProgress = 1f / (_args.MaxRadius - _args.StartRadius);
+            _progress.Value = _minProgress;
+
+            Chopped = _chopped.AsObservable();
         }
 
         public bool CanUpgrade => _radius < _args.MaxRadius;
 
         //Temporary solution
         public int Price => 5;
+        public Observable<Unit> Chopped { get; }
         public ReadOnlyReactiveProperty<float> Progress => _progress;
 
-        public IEnumerable<IGrass> CollectGrass()
+        public IEnumerable<IGrass> Chop()
         {
             var grass = new List<IGrass>();
 
@@ -54,6 +64,7 @@ namespace InstrumentsModule
                 target.Collect();
             }
 
+            _chopped.Execute(Unit.Default);
             arrayPool.Return(colliders);
             return grass;
         }
@@ -64,11 +75,10 @@ namespace InstrumentsModule
                 return;
 
             _radius++;
+            _args.Transform.localScale = Vector3.one * _radius;
 
-            var progress = _radius.Remap(_args.StartRadius, _args.MaxRadius, 0, 1);
+            var progress = _radius.Remap(_args.StartRadius, _args.MaxRadius, _minProgress, 1);
             _progress.Value = progress;
-
-            _args.RadiusForGizmos = _radius;
         }
     }
 }

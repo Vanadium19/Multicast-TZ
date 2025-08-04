@@ -1,6 +1,6 @@
 using BotModule;
 using EntityModule;
-using InvetoryModule;
+using InventoryModule;
 using PlayerModule;
 using UnityEngine;
 using WalletModule;
@@ -34,7 +34,7 @@ namespace RootModule
         private void Cell()
         {
             var cost = _bag.GoodsCost;
-            var count = _bag.GoodsCount;
+            var count = _bag.GoodsCount.CurrentValue;
 
             _wallet.AddMoney(cost);
 
