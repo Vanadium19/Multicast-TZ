@@ -23,8 +23,6 @@ namespace InvetoryModule
                 return;
 
             _goods.Add(good);
-
-            Debug.LogWarning($"Good added count: {_goods.Count}, total cost: {GoodsCost}");
         }
 
         public void Clear()

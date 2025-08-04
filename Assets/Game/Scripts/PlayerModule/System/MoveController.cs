@@ -6,9 +6,9 @@ namespace PlayerModule
     public class MoveController : ITickable
     {
         private readonly IMoveInput _moveInput;
-        private readonly IMoveComponent _moveComponent;
+        private readonly IDirectionMoveComponent _moveComponent;
 
-        public MoveController(IMoveInput moveInput, IMoveComponent moveComponent)
+        public MoveController(IMoveInput moveInput, IDirectionMoveComponent moveComponent)
         {
             _moveInput = moveInput;
             _moveComponent = moveComponent;

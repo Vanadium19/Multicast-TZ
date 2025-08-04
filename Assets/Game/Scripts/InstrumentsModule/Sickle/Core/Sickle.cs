@@ -68,7 +68,6 @@ namespace InstrumentsModule
             var progress = _radius.Remap(_args.StartRadius, _args.MaxRadius, 0, 1);
             _progress.Value = progress;
 
-            Debug.Log($"Sickle upgraded to {_radius} progress: {progress}");
             _args.RadiusForGizmos = _radius;
         }
     }

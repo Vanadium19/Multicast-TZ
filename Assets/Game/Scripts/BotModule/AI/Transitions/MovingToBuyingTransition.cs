@@ -2,16 +2,16 @@ using FSMModule;
 
 namespace BotModule
 {
-    public class IdleToMoveTransition : AbstractStateTransition<StateName>
+    public class MovingToBuyingTransition : AbstractStateTransition<StateName>
     {
         private readonly Blackboard _blackboard;
         private readonly int _key;
 
-        public IdleToMoveTransition(Blackboard blackboard)
-            : base(StateName.Idle, StateName.Moving)
+        public MovingToBuyingTransition(Blackboard blackboard)
+            : base(StateName.Moving, StateName.Buying)
         {
             _blackboard = blackboard;
-            _key = (int)BlackboardTag.IsStarted;
+            _key = (int)BlackboardTag.IsBuying;
         }
 
         public override bool CanPerform()

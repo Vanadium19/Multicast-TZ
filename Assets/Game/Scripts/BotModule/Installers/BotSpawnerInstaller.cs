@@ -15,7 +15,7 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            Container.BindMemoryPool<Entity, BotsPool>()
+            Container.BindMemoryPool<Entity, BotPool>()
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_botPrefab)
                 .WithGameObjectName(BotName)

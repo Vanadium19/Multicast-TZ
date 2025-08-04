@@ -5,5 +5,6 @@ namespace BotModule
         Target = 0,
         IsFinished,
         IsStarted,
+        IsBuying,
     }
 }

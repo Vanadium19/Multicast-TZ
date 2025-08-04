@@ -1,9 +1,9 @@
-using UnityEngine;
+using R3;
 
 namespace ComponentsModule
 {
     public interface IMoveComponent
     {
-        public void Move(Vector3 direction);
+        public ReadOnlyReactiveProperty<bool> IsMoving { get; }
     }
 }

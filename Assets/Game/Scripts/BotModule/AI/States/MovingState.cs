@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using ComponentsModule;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FSMModule;
@@ -9,24 +10,21 @@ namespace BotModule
 {
     public class MovingState : IState
     {
+        private readonly ITargetMoveComponent _moveComponent;
         private readonly Blackboard _blackboard;
-        private readonly Transform _transform;
-        private readonly float _speed;
-
         private readonly Path _path;
 
         private PathPoint _currentPoint;
+        private PathPoint _lastPoint;
 
         private CancellationTokenSource _tokenSource;
 
-        public MovingState(Blackboard blackboard,
-            Transform transform,
-            float speed,
+        public MovingState(ITargetMoveComponent moveComponent,
+            Blackboard blackboard,
             Path path)
         {
+            _moveComponent = moveComponent;
             _blackboard = blackboard;
-            _transform = transform;
-            _speed = speed;
             _path = path;
         }
 
@@ -34,10 +32,12 @@ namespace BotModule
         {
             _tokenSource = new CancellationTokenSource();
 
-            if (!_currentPoint)
+            var isContinue = _currentPoint != null;
+
+            if (!isContinue)
                 _currentPoint = _path.GetFirstPoint();
 
-            MoveToTarget().Forget();
+            MoveToTarget(isContinue).Forget();
         }
 
         public void OnUpdate(float deltaTime)
@@ -46,38 +46,36 @@ namespace BotModule
 
         public void OnExit()
         {
-            var isFinished = _blackboard.GetBool((int)BlackboardTag.IsFinished);
+            _blackboard.TryGetBool((int)BlackboardTag.IsFinished, out bool isFinished);
 
             _tokenSource.Cancel();
             _tokenSource.Dispose();
 
-            if (isFinished)
-                _currentPoint = null;
-        }
+            _lastPoint = null;
 
-        private async UniTaskVoid MoveToTarget()
-        {
-            var cancelToken = _tokenSource.Token;
-
-            var position = _currentPoint.Position;
-            position.y = _transform.position.y;
-
-            await UniTask.WaitWhile(() => _currentPoint.IsBusy, cancellationToken: cancelToken);
-
-            _currentPoint.SetBusy(true);
-
-            var moveTween = _transform.DOMove(position, _speed).SetEase(Ease.Linear).SetSpeedBased(true);
-            cancelToken.Register(() =>
-            {
-                moveTween.Kill();
-                _currentPoint.SetBusy(false);
-            });
-
-            await moveTween;
-
-            await UniTask.Delay(TimeSpan.FromSeconds(_currentPoint.Delay), cancellationToken: cancelToken);
+            if (!isFinished)
+                return;
 
             _currentPoint.SetBusy(false);
+            _currentPoint = null;
+        }
+
+        private async UniTaskVoid MoveToTarget(bool isContinue = false)
+        {
+            var cancellationToken = _tokenSource.Token;
+
+            if (!isContinue)
+                await UniTask.WaitWhile(() => _currentPoint.IsBusy, cancellationToken: cancellationToken);
+
+            _lastPoint?.SetBusy(false);
+            _currentPoint.SetBusy(true);
+
+            var position = _currentPoint.Position;
+            await _moveComponent.MoveToTarget(position, cancellationToken);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(_currentPoint.Delay), cancellationToken: cancellationToken);
+
+            _lastPoint = _currentPoint;
             _currentPoint = _path.GetNextPoint(_currentPoint);
 
             MoveToTarget().Forget();

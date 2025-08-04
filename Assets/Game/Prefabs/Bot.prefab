@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6801999590100149024}
   - component: {fileID: 5743771473835977215}
   - component: {fileID: 3738214701954443144}
+  - component: {fileID: 2066696343700854062}
   - component: {fileID: 5493102385493000173}
   - component: {fileID: 2814706514942866599}
   - component: {fileID: 420394063395031852}
-  - component: {fileID: 525613691995178524}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -113,6 +113,33 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2066696343700854062
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732772403376847360}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!114 &5493102385493000173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d73cf5e7294e399efc962996152c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _path: {fileID: 0}
   _bot: {fileID: 6306518390982064513}
   _speed: 5
 --- !u!114 &420394063395031852
@@ -159,16 +185,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _context: {fileID: 5493102385493000173}
---- !u!114 &525613691995178524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8732772403376847360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7679ed63d5d543f7a5c10cd3a300fa42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: {fileID: 420394063395031852}

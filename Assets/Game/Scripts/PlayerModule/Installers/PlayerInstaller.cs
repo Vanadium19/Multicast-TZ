@@ -19,8 +19,8 @@ namespace PlayerModule
                 .AsSingle()
                 .NonLazy();
 
-            Container.Bind<IMoveComponent>()
-                .To<MoveComponent>()
+            Container.Bind<IDirectionMoveComponent>()
+                .To<DirectionMoveComponent>()
                 .AsSingle()
                 .WithArguments(_speed);
 

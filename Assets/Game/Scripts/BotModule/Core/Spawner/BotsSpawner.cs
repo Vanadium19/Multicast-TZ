@@ -11,15 +11,18 @@ namespace BotModule
         private readonly Dictionary<IBot, Entity> _bots = new();
 
         private readonly BotsSpawnerArgs _args;
-        private readonly BotsPool _botsPool;
+        private readonly PathPoint _firstPoint;
+        private readonly BotPool _botPool;
 
         private bool _isSpawning;
         private int _botsCount;
 
-        public BotsSpawner(BotsPool botsPool,
-            BotsSpawnerArgs args)
+        public BotsSpawner(BotPool botPool,
+            BotsSpawnerArgs args,
+            Path path)
         {
-            _botsPool = botsPool;
+            _firstPoint = path.GetFirstPoint();
+            _botPool = botPool;
             _args = args;
         }
 
@@ -42,6 +45,7 @@ namespace BotModule
             while (_botsCount > 0)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(delay));
+                await UniTask.WaitWhile(() => _firstPoint.IsBusy);
                 Spawn();
             }
 
@@ -53,17 +57,17 @@ namespace BotModule
             _botsCount--;
 
             var spawnPosition = _args.SpawnPosition;
-            var entity = _botsPool.Spawn(spawnPosition);
+            var entity = _botPool.Spawn(spawnPosition);
             var bot = entity.Get<IBot>();
 
             bot.WorkFinished += OnWorkFinished;
             _bots.Add(bot, entity);
         }
 
-        private void OnWorkFinished(Bot bot)
+        private void OnWorkFinished(IBot bot)
         {
             if (_bots.Remove(bot, out var entity))
-                _botsPool.Despawn(entity);
+                _botPool.Despawn(entity);
 
             bot.WorkFinished -= OnWorkFinished;
         }
