@@ -25,7 +25,6 @@ namespace ComponentsModule
         public Tween MoveToTarget(Vector3 position, CancellationToken cancellationToken = default)
         {
             _isMoving.Value = true;
-            position.y = _transform.position.y;
 
             _moveTween?.Kill();
             _moveTween = _transform.DOMove(position, _speed)

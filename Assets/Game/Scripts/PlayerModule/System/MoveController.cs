@@ -1,4 +1,5 @@
 using ComponentsModule;
+using UnityEngine.UIElements;
 using Zenject;
 
 namespace PlayerModule
@@ -7,11 +8,15 @@ namespace PlayerModule
     {
         private readonly IMoveInput _moveInput;
         private readonly IDirectionMoveComponent _moveComponent;
+        private readonly IRotationComponent _rotationComponent;
 
-        public MoveController(IMoveInput moveInput, IDirectionMoveComponent moveComponent)
+        public MoveController(IMoveInput moveInput,
+            IDirectionMoveComponent moveComponent,
+            IRotationComponent rotationComponent)
         {
             _moveInput = moveInput;
             _moveComponent = moveComponent;
+            _rotationComponent = rotationComponent;
         }
 
         public void Tick()
@@ -24,6 +29,7 @@ namespace PlayerModule
             var direction = _moveInput.Direction;
 
             _moveComponent.Move(direction);
+            _rotationComponent.Rotate(direction);
         }
     }
 }

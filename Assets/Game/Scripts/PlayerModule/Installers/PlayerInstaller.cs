@@ -6,6 +6,8 @@ namespace PlayerModule
 {
     public class PlayerInstaller : MonoInstaller
     {
+        [SerializeField] private PlayerView _view;
+        [SerializeField] private Transform _transform;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _speed = 5;
 
@@ -13,6 +15,10 @@ namespace PlayerModule
         {
             Container.Bind<Rigidbody>()
                 .FromInstance(_rigidbody)
+                .AsSingle();
+
+            Container.Bind<Transform>()
+                .FromInstance(_transform)
                 .AsSingle();
 
             Container.Bind<Player>()
@@ -24,9 +30,21 @@ namespace PlayerModule
                 .AsSingle()
                 .WithArguments(_speed);
 
+            Container.Bind<IRotationComponent>()
+                .To<RotationComponent>()
+                .AsSingle();
+
             Container.BindInterfacesTo<MoveController>()
                 .AsSingle()
                 .NonLazy();
+
+            Container.BindInterfacesTo<PlayerPresenter>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<PlayerView>()
+                .FromInstance(_view)
+                .AsSingle();
         }
     }
 }

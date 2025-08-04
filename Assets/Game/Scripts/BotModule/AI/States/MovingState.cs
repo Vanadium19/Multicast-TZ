@@ -11,7 +11,10 @@ namespace BotModule
     public class MovingState : IState
     {
         private readonly ITargetMoveComponent _moveComponent;
+        private readonly IRotationComponent _rotationComponent;
+
         private readonly Blackboard _blackboard;
+        private readonly Transform _transform;
         private readonly Path _path;
 
         private PathPoint _currentPoint;
@@ -20,11 +23,16 @@ namespace BotModule
         private CancellationTokenSource _tokenSource;
 
         public MovingState(ITargetMoveComponent moveComponent,
+            IRotationComponent rotationComponent,
             Blackboard blackboard,
+            Transform transform,
             Path path)
         {
             _moveComponent = moveComponent;
+            _rotationComponent = rotationComponent;
+
             _blackboard = blackboard;
+            _transform = transform;
             _path = path;
         }
 
@@ -71,6 +79,11 @@ namespace BotModule
             _currentPoint.SetBusy(true);
 
             var position = _currentPoint.Position;
+            position.y = _transform.position.y;
+
+            var direction = (position - _transform.position).normalized;
+            _rotationComponent.Rotate(direction);
+
             await _moveComponent.MoveToTarget(position, cancellationToken);
 
             await UniTask.Delay(TimeSpan.FromSeconds(_currentPoint.Delay), cancellationToken: cancellationToken);
