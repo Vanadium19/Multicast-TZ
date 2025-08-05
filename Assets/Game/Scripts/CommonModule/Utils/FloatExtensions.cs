@@ -1,4 +1,4 @@
-namespace UtilsModule
+namespace CommonModule
 {
     public static class FloatExtensions
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using CommonModule;
 using EntityModule;
 using GoodsModule;
 using R3;
 using UnityEngine;
-using UtilsModule;
 
 namespace InstrumentsModule
 {

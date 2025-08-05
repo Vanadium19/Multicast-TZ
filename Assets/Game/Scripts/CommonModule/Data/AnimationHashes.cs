@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common
+namespace CommonModule
 {
     public static class AnimationHashes
     {
