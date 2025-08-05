@@ -1,0 +1,4 @@
+{
+  "name": "GoodsModule",
+  "references":[ "GUID:0d8beb7f090555447a6cf5ce9e54dbb4", "GUID:bf782c0d478f46c392cb1d7988701310" ]
+}
