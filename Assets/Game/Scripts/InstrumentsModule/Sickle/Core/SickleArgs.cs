@@ -6,21 +6,18 @@ namespace InstrumentsModule
     [Serializable]
     public class SickleArgs
     {
-        [SerializeField] private float _delay = 2f;
-
-        [SerializeField] private float _startRadius = 2f;
-        [SerializeField] private float _maxRadius = 5f;
-
+        [SerializeField] private SickleConfig _config;
         [SerializeField] private Transform _transform;
-        [SerializeField] private LayerMask _layerMask;
 
-        public float Delay => _delay;
+        public float Delay => _config.Delay;
 
-        public float StartRadius => _startRadius;
-        public float MaxRadius => _maxRadius;
+        public float StartRadius => _config.StartRadius;
+        public float MaxRadius => _config.MaxRadius;
 
         public Transform Transform => _transform;
         public Vector3 Point => _transform.position;
-        public LayerMask LayerMask => _layerMask;
+        public LayerMask LayerMask => _config.LayerMask;
+
+        public int Price => _config.Price;
     }
 }

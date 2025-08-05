@@ -35,9 +35,7 @@ namespace InstrumentsModule
         }
 
         public bool CanUpgrade => _radius < _args.MaxRadius;
-
-        //Temporary solution
-        public int Price => 5;
+        public int Price => _args.Price;
         public Observable<Unit> Chopped { get; }
         public ReadOnlyReactiveProperty<float> Progress => _progress;
 

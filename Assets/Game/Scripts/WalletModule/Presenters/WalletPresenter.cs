@@ -22,6 +22,7 @@ namespace WalletModule
             var disposableBuilder = Disposable.CreateBuilder();
 
             _wallet.Money.Subscribe(OnMoneyChanged).AddTo(ref disposableBuilder);
+            _wallet.MoneyAdded.Subscribe(_ => _view.PlayAddedMoneyEffect()).AddTo(ref disposableBuilder);
 
             _disposables = disposableBuilder.Build();
         }

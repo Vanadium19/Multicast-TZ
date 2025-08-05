@@ -18,7 +18,6 @@ namespace ComponentsModule
 
             var rotation = Quaternion.LookRotation(direction);
 
-            Debug.Log($"Rotating {_transform.name}");
             _transform.rotation = rotation;
         }
     }
