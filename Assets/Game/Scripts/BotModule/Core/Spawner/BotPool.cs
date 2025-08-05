@@ -4,7 +4,7 @@ using Zenject;
 
 namespace BotModule
 {
-    public class BotPool : MonoMemoryPool<Vector3, Entity>
+    internal class BotPool : MonoMemoryPool<Vector3, Entity>
     {
         protected override void Reinitialize(Vector3 position, Entity entity)
         {

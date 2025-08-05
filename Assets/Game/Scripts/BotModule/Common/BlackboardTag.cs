@@ -2,8 +2,7 @@ namespace BotModule
 {
     public enum BlackboardTag
     {
-        Target = 0,
-        IsFinished,
+        IsFinished = 0,
         IsStarted,
         IsBuying,
     }

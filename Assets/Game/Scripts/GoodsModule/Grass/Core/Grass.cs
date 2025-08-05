@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GoodsModule
 {
-    public class Grass : IGrass
+    internal class Grass : IGrass
     {
         private readonly Collider _collider;
         private readonly GoodConfig _goodConfig;

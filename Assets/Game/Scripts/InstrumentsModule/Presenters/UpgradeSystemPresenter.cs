@@ -4,7 +4,7 @@ using Zenject;
 
 namespace InstrumentsModule
 {
-    public class UpgradeSystemPresenter : IInitializable, IDisposable
+    internal class UpgradeSystemPresenter : IInitializable, IDisposable
     {
         private readonly IUpgradeSystem _upgradeSystem;
         private readonly UpgradeView _view;

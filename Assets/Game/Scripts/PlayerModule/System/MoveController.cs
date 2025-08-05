@@ -1,10 +1,9 @@
 using ComponentsModule;
-using UnityEngine.UIElements;
 using Zenject;
 
 namespace PlayerModule
 {
-    public class MoveController : ITickable
+    internal class MoveController : ITickable
     {
         private readonly IMoveInput _moveInput;
         private readonly IDirectionMoveComponent _moveComponent;

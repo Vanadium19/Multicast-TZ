@@ -2,7 +2,7 @@ using FSMModule;
 
 namespace BotModule
 {
-    public class MoveToIdleTransition : AbstractStateTransition<StateName>
+    internal class MoveToIdleTransition : AbstractStateTransition<StateName>
     {
         private readonly Blackboard _blackboard;
         private readonly int _key;

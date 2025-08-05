@@ -5,7 +5,7 @@ using Zenject;
 
 namespace BotModule
 {
-    public class AIAgent : IInitializable, ITickable, IDisposable
+    internal class AIAgent : IInitializable, ITickable, IDisposable
     {
         private readonly IStateMachine<StateName> _stateMachine;
 

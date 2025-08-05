@@ -1,9 +1,8 @@
 using FSMModule;
-using UnityEngine;
 
 namespace BotModule
 {
-    public class IdleState : IState
+    internal class IdleState : IState
     {
         private readonly Blackboard _blackboard;
         private readonly IBot _bot;

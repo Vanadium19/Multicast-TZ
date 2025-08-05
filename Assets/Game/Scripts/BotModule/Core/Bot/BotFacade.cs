@@ -4,7 +4,7 @@ using R3;
 
 namespace BotModule
 {
-    public class BotFacade : IBot
+    internal class BotFacade : IBot
     {
         private readonly ITargetMoveComponent _moveComponent;
         private readonly Blackboard _blackboard;

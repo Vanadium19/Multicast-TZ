@@ -5,7 +5,7 @@ using Zenject;
 
 namespace PlayerModule
 {
-    public class PlayerPresenter : IInitializable, IDisposable
+    internal class PlayerPresenter : IInitializable, IDisposable
     {
         private readonly IDirectionMoveComponent _moveComponent;
         private readonly PlayerView _view;

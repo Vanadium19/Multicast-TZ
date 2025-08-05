@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BotModule
 {
-    public class Path : MonoBehaviour
+    internal class Path : MonoBehaviour
     {
         [SerializeField] private PathPoint[] _points;
 

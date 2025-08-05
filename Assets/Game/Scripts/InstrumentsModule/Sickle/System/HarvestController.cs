@@ -1,12 +1,11 @@
 using System.Linq;
-using InstrumentsModule;
 using InventoryModule;
 using UnityEngine;
 using Zenject;
 
 namespace InstrumentsModule
 {
-    public class HarvestController : ITickable, IHarvestController
+    internal class HarvestController : ITickable, IHarvestController
     {
         private readonly ISickle _sickle;
         private readonly IBag _bag;

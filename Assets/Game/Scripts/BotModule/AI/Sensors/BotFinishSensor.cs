@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BotModule
 {
-    public class BotFinishSensor : MonoBehaviour
+    internal class BotFinishSensor : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
         {

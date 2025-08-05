@@ -4,7 +4,7 @@ using Zenject;
 
 namespace BotModule
 {
-    public class BotPresenter : IInitializable, IDisposable
+    internal class BotPresenter : IInitializable, IDisposable
     {
         private readonly IBot _bot;
         private readonly BotView _view;

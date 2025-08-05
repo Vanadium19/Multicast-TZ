@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BotModule
 {
     [Serializable]
-    public class BotsSpawnerArgs
+    internal class BotsSpawnerArgs
     {
         [SerializeField] private float _delay;
         [SerializeField] private Transform _spawnPoint;

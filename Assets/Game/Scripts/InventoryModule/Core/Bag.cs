@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using R3;
-using UnityEngine;
 
 namespace InventoryModule
 {
-    public class Bag : IBag
+    internal class Bag : IBag
     {
         private readonly List<IGood> _goods = new();
         private readonly ReactiveProperty<int> _goodsCount = new();

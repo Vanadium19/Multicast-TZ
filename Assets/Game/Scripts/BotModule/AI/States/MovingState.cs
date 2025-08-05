@@ -2,13 +2,12 @@ using System;
 using System.Threading;
 using ComponentsModule;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using FSMModule;
 using UnityEngine;
 
 namespace BotModule
 {
-    public class MovingState : IState
+    internal class MovingState : IState
     {
         private readonly ITargetMoveComponent _moveComponent;
         private readonly IRotationComponent _rotationComponent;

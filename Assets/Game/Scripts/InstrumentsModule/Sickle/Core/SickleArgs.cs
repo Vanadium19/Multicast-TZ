@@ -8,6 +8,12 @@ namespace InstrumentsModule
     {
         [SerializeField] private SickleConfig _config;
         [SerializeField] private Transform _transform;
+        
+        internal SickleArgs(SickleConfig config, Transform transform)
+        {
+            _config = config;
+            _transform = transform;
+        }
 
         public float Delay => _config.Delay;
 

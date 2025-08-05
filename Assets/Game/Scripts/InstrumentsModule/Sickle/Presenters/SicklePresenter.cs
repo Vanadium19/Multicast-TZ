@@ -4,7 +4,7 @@ using Zenject;
 
 namespace InstrumentsModule
 {
-    public class SicklePresenter : IInitializable, IDisposable
+    internal class SicklePresenter : IInitializable, IDisposable
     {
         private const int VFXStartProgress = 1;
 

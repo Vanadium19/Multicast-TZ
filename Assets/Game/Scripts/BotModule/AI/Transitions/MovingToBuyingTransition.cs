@@ -2,7 +2,7 @@ using FSMModule;
 
 namespace BotModule
 {
-    public class MovingToBuyingTransition : AbstractStateTransition<StateName>
+    internal class MovingToBuyingTransition : AbstractStateTransition<StateName>
     {
         private readonly Blackboard _blackboard;
         private readonly int _key;

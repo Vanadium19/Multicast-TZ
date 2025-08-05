@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BotModule
 {
-    public class Blackboard
+    internal class Blackboard
     {
         private readonly HashSet<int> _tags = new();
         private readonly Dictionary<int, bool> _boolValues = new();

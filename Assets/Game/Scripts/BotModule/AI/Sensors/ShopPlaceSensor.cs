@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BotModule
 {
-    public class ShopPlaceSensor : MonoBehaviour
+    internal class ShopPlaceSensor : MonoBehaviour
     {
         [SerializeField] private float _buyDelay = 2f;
 

@@ -4,7 +4,7 @@ using Zenject;
 
 namespace InventoryModule
 {
-    public class BagPresenter : IInitializable, IDisposable
+    internal class BagPresenter : IInitializable, IDisposable
     {
         private readonly IBag _bag;
         private readonly BagView _view;

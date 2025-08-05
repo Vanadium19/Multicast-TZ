@@ -1,10 +1,8 @@
-using ComponentsModule;
 using FSMModule;
-using UnityEngine;
 
 namespace BotModule
 {
-    public class BuyingState : IState
+    internal class BuyingState : IState
     {
         private readonly IBot _bot;
 

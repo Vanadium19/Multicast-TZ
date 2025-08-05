@@ -7,7 +7,7 @@ using UtilsModule;
 
 namespace InstrumentsModule
 {
-    public class Sickle : ISickle
+    internal class Sickle : ISickle
     {
         private const int ColliderBufferSize = 32;
 

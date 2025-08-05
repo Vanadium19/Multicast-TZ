@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using EntityModule;
-using UnityEngine;
 
 namespace BotModule
 {
-    public class BotsSpawner : IBotsSpawner
+    internal class BotsSpawner : IBotsSpawner
     {
         private readonly Dictionary<IBot, Entity> _bots = new();
 

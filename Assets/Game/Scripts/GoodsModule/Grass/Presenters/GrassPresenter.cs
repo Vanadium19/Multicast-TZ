@@ -4,7 +4,7 @@ using Zenject;
 
 namespace GoodsModule
 {
-    public class GrassPresenter : IInitializable, IDisposable
+    internal class GrassPresenter : IInitializable, IDisposable
     {
         private readonly IGrass _grass;
         private readonly GrassView _view;

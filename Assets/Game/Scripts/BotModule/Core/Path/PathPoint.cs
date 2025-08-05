@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BotModule
 {
-    public class PathPoint : MonoBehaviour
+    internal class PathPoint : MonoBehaviour
     {
         [SerializeField] private float _delay;
 
